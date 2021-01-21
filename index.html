@@ -21,37 +21,80 @@
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
     <script>
-      // JavaScript code goes here -------------------------------->
-      // Variable Definitions      -------------------------------->
-      var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
+        // JavaScript code goes here 
+        // =========================================================
+        // Variable Definitions
+        // =========================================================
+        
+        // Variables for creating the canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
 
-      // Variables for Drawing and moving the ball. --------------->
-      var x = canvas.width / 2;
-      var y = canvas.height - 30;
-      var dx = 2;
-      var dy = -2;
-    
-      // Function to drawball with attirbutes
-      function drawBall() {
-        ctx.beginPath();
-        ctx.arc(x, y, 10, 0, Math.PI * 2);
-        ctx.fillStyle = "#0095DD";
-        ctx.fill();
-        ctx.closePath();
-      }
-      
-      // Function for drawing code for every frame
-      function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        drawBall();
-        x += dx;
-        y += dy;
-      }
+        // Variables for ball location.
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
 
-      setInterval(draw, 10);
+        // Variables representing the ball's rate of change from the starting position.
+        var dx = 2;
+        var dy = -2;
+        var ballRadius = 10;
 
+        // Variables for creating the paddle
+        var paddleHeight = 10;
+        var paddleWidth = 75;
+        var paddleX = (canvas.width-paddleWidth) / 2;
 
+       // Defining a paddle to hit the ball
+       var paddleHeight = 10;
+       var paddleWidth = 75;
+       var paddleX = (canvas.width-paddleWidth) / 2;
+
+        // Variable for ball's changing color
+        var get_random_color = 
+            function getColor () {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ',' + r().toFixed(1) + ')';
+            }
+
+        // =========================================================
+        // Function Definitions
+        // =========================================================
+        // Function to drawball with attirbutes
+        function drawBall() {
+          ctx.beginPath();
+          ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+          ctx.fillStyle = "#";
+          ctx.fill();
+          ctx.closePath();
+        }
+
+        // Function responible for movement x & y movement
+        function draw() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          drawBall();
+
+          // This if statement is repsonsible for bouncing off the left and right
+          if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+          dx = -dx;	ctx.fillStyle = 'green';
+            }
+
+          // This if statement is repsonsible for bouncing off the top and bottom
+          if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+              dy = -dy; ctx.fillStyle = 'yellow';
+            }
+          x += dx;
+          y += dy;        
+        }
+
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        setInterval(draw, 10);
     </script>
   </body>
 </html>
