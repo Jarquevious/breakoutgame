@@ -119,13 +119,13 @@
         } else if(y + dy > canvas.height-ballRadius) {
             if(x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
-        }
-        else {
-            alert("GAME OVER");
-            document.location.reload();
-            clearInterval(interval);
-        }
-    }
+            }
+            else {
+                alert("GAME OVER");
+                document.location.reload();
+                clearInterval(interval);
+            }
+      }
         // This if statement is responsible the movement and the contraints of the ball
         if (rightPressed) {
           paddleX += 7;
