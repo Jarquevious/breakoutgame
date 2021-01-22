@@ -5,10 +5,11 @@
     <title>Gamedev Canvas Workshop</title>
     <style>
       * {
+        /* Why both padding and margin are set to zero? */
         padding: 0;
         margin: 0;
       }
-
+      /* Created a canvas to make the game appear on the screen, user can dist the canvas color is diff so users can distinguish the webpage background and thr canvas background canvas background   */
       canvas {
         background: #eee;
         display: block;
@@ -18,19 +19,20 @@
   </head>
 
   <body>
+    <!-- Used Cannvas tag to create canvas and gave it an id, width and height -->
     <canvas id="myCanvas" width="480" height="320"></canvas>
-
+    <!-- Created a script  -->
     <script>
       // JavaScript code goes here
       // =========================================================
-      // Variable Definitions
+      //                   Variable Definitions
       // =========================================================
 
       // Variables for creating the canvas
       var canvas = document.getElementById("myCanvas");
       var ctx = canvas.getContext("2d");
 
-      // Variables for ball location.
+      // Variables for ball location. Used in creating motion effect.
       var x = canvas.width / 2;
       var y = canvas.height - 30;
 
@@ -39,7 +41,7 @@
       var dy = -2;
       var ballRadius = 10;
 
-      // Defining a paddle to hit the ball
+      // Defining a paddle to hit the ball.
       var paddleHeight = 10;
       var paddleWidth = 75;
       var paddleX = (canvas.width - paddleWidth) / 2;
@@ -48,9 +50,18 @@
       var rightPressed = false;
       var leftPressed = false;
 
+      // =========================================================
+      //                       Event Handlers
+      // =========================================================
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
-      
+
+      // =========================================================
+      //                       Functions
+      // =========================================================
+
+      // Function is responsible for what happens when right arrow button is pressed. 'e' and 'key' are built in methods.
+      // ArrowRight for the right cursor keys, but we need to also include Right checks to support IE/Edge browsers.
       function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
           rightPressed = true;
@@ -59,6 +70,7 @@
         }
       }
 
+      // ArrowLeft for the left cursor keys, but we need to also include Left checks to support IE/Edge browsers.
       function keyUpHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
           rightPressed = false;
@@ -66,7 +78,7 @@
           leftPressed = false;
         }
       }
-      
+
       // Function to drawball with attirbutes
       function drawBall() {
         ctx.beginPath();
@@ -76,6 +88,7 @@
         ctx.closePath();
       }
 
+      // Function to draw paddle by creating its attributes
       function drawPaddle() {
         ctx.beginPath();
         ctx.rect(
@@ -94,23 +107,29 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
         drawPaddle();
-        if(rightPressed) {
-          paddleX += 7;
-      }
-        else if(leftPressed) {
-          paddleX -= 7;
-      }
 
-        // This if statement is repsonsible for bouncing off the left and right
+        // This if statement is repsonsible for Ball bouncing off the left and right edges
         if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
           dx = -dx;
           ctx.fillStyle = "green";
         }
 
-        // This if statement is repsonsible for bouncing off the top and bottom
+        // This if statement is repsonsible for bouncing off the top and bottom edges
         if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
           dy = -dy;
           ctx.fillStyle = "yellow";
+        }
+// This if statement is responsible 
+        if (rightPressed) {
+          paddleX += 7;
+          if (paddleX + paddleWidth > canvas.width) {
+            paddleX = canvas.width - paddleWidth;
+          }
+        } else if (leftPressed) {
+            paddleX -= 7;
+            if (paddleX < 0) {
+              paddleX = 0;
+            }
         }
         x += dx;
         y += dy;
