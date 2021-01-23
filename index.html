@@ -109,6 +109,11 @@
                 dy = -dy;
                 b.status = 0;
                 score++;
+                if(score == brickRowCount*brickColumnCount) {
+                        alert("YOU WIN, CONGRATULATIONS!");
+                        document.location.reload();
+                        clearInterval(interval); 
+                }
               }
             }
           }
@@ -170,6 +175,8 @@
         drawPaddle();
         drawBricks();
         collisionDetection();
+        drawScore();
+
 
 
         // This if statement is repsonsible for Ball bouncing off the left and right edges
