@@ -96,6 +96,15 @@
         }
       }
 
+      // This function is used for to create collision detection
+      function collisionDetection() {
+        for(var c=0; c<brickColumnCount; c++) {
+          for(var r=0; r<brickRowCount; r++) {
+            var b = bricks[c][r];
+            // calculations
+        }
+    }
+}
       // Function to drawball with attirbutes
       function drawBall() {
         ctx.beginPath();
@@ -119,6 +128,7 @@
         ctx.closePath();
       }
 
+      // Function is responsible for looping through all the bricks in the array and drawing them on the screen.
       function drawBricks() {
         for(var c=0; c<brickColumnCount; c++) {
           for(var r=0; r<brickRowCount; r++) {
