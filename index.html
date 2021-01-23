@@ -50,6 +50,23 @@
       var rightPressed = false;
       var leftPressed = false;
 
+      // Variables to define information about the bricks
+      var brickRowCount = 3;            // sets row of bricks
+      var brickColumnCount = 5;         // sets the number of columns for bricks
+      var brickWidth = 75;              // sets how long the width will be for each individual brick
+      var brickHeight = 20;             // sets how long the height will be for each individual brick
+      var brickPadding = 10;            // sets space between each individual brick
+      var brickOffsetTop = 30;          // sets the bricks to off set by 30 pixels the top row
+      var brickOffsetLeft = 30;         // sets brick off set left by 30 pivels
+
+      var bricks = [];                  // 2d array to hold our bricks
+      for(var c=0; c<brickColumnCount; c++) {  
+        bricks[c] = [];
+        for(var r=0; r<brickRowCount; r++) {
+          bricks[c][r] = { x: 0, y: 0 };
+    }
+}
+
       // =========================================================
       //                       Event Handlers
       // =========================================================
@@ -102,11 +119,28 @@
         ctx.closePath();
       }
 
+      function drawBricks() {
+        for(var c=0; c<brickColumnCount; c++) {
+          for(var r=0; r<brickRowCount; r++) {
+            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
+            ctx.beginPath();
+            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+}
+
       // Function responible for movement x & y movement
       function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawBall();
         drawPaddle();
+        drawBricks();
 
         // This if statement is repsonsible for Ball bouncing off the left and right edges
         if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
@@ -116,6 +150,7 @@
         // This if statement is repsonsible for bouncing off the top and bottom edges
         if(y + dy < ballRadius) {
             dy = -dy;
+        // This 'else if' is responsible for ending the game if the ball touches the maximum height of the campus; when the ball hits the bottom.
         } else if(y + dy > canvas.height-ballRadius) {
             if(x > paddleX && x < paddleX + paddleWidth) {
                 dy = -dy;
