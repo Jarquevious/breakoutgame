@@ -123,8 +123,7 @@
                 score++;
                 if(score == brickRowCount*brickColumnCount) {
                         alert("YOU WIN, CONGRATULATIONS!");
-                        document.location.reload();
-                        clearInterval(interval); 
+                        document.location.reload(); 
                 }
               }
             }
@@ -241,9 +240,11 @@
         }
         x += dx;
         y += dy;
+        requestAnimationFrame(draw);
       }
 
-      var interval = setInterval(draw, 10);
+      draw();
+      
     </script>
   </body>
 </html>
