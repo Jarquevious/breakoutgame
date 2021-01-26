@@ -5,7 +5,8 @@
 
       // Variables for creating the canvas
       var canvas = document.getElementById("myCanvas");
-      var ctx = canvas.getContext("2d");
+      var ctx = canvas.getContext("2d")
+      
 
       // Variables for ball location. Used in creating motion effect.
       var x = canvas.width / 2;
@@ -39,7 +40,6 @@
       var brickPadding = 10;            // sets space between each individual brick
       var brickOffsetTop = 30;          // sets the bricks to off set by 30 pixels the top row
       var brickOffsetLeft = 30;         // sets brick off set left by 30 pivels
-
       var bricks = [];                  // 2d array to hold our bricks
       for(var c = 0; c < brickColumnCount; c++) {  
         bricks[c] = [];
@@ -61,7 +61,7 @@
 
       // Function responisble for background color
       function drawBackground(){
-          
+        document.body.canvas.style.backgroundColor = 'blue';
       }
 
       // Function is responsible for what happens when right arrow button is pressed. 'e' and 'key' are built in methods.
@@ -164,7 +164,6 @@
                 }
             
             }
-            //   ctx.fillStyle = "red";
               ctx.fill()
             } ctx.closePath();
         }
@@ -180,6 +179,7 @@
         collisionDetection();
         drawScore();
         drawLives();
+        drawBackground();
 
 
 
