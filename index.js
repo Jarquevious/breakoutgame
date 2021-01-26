@@ -59,6 +59,11 @@
       //                       Functions
       // =========================================================
 
+      // Function responisble for background color
+      function drawBackground(){
+          
+      }
+
       // Function is responsible for what happens when right arrow button is pressed. 'e' and 'key' are built in methods.
       // ArrowRight for the right cursor keys, but we need to also include Right checks to support IE/Edge browsers.
       function keyDownHandler(e) {
