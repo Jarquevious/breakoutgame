@@ -61,7 +61,7 @@
 
       // Function responisble for background color
       function drawBackground(){
-        document.body.canvas.style.backgroundColor = 'blue';
+        document.body.style.backgroundColor = 'blue';
       }
 
       // Function is responsible for what happens when right arrow button is pressed. 'e' and 'key' are built in methods.
