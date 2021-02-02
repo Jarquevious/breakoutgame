@@ -1,8 +1,10 @@
 class Paddle { 
     constructor() {
-    paddleHeight = 10;
-    paddleWidth = 75;
-    paddleX = (canvas.width - paddleWidth) / 2;
+        this.paddleHeight = 10;
+        this.paddleWidth = 75;
+        this.paddleX = (canvas.width - paddleWidth) / 2;
+        this.color = "#0095DD";
+
 
     // Methods
     // Function to draw paddle
@@ -18,4 +20,6 @@ class Paddle {
         ctx.fill();
         ctx.closePath();
       }
-}
+    }
+  }
+  export default Paddle;
