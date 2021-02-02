@@ -8,10 +8,9 @@ class Ball {
         this.dx = 2;
         this.dy = 2;
     }
-    
 
     // Methods 
-    function drawBall(ctx) {
+    drawBall(ctx) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
@@ -31,7 +30,7 @@ class Ball {
         }
         this.x += this.dx;
         this.y += this.dy;
-    }
+    }}
 
+export default Ball
 
-ball_1 = Ball(2, 30, canvas.width / 2, canvas.height - 30)
