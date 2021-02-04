@@ -7,16 +7,16 @@ class Lives {
         this.font = font;
     }
     render(ctx) {
-            ctx.font = "16px Arial";
-            ctx.fillStyle = "#0095DD";
-            ctx.fillText("Lives: " + this.lives, canvas.width - 65, 20);
+        ctx.font = "16px Arial";
+        ctx.fillStyle = "#0095DD";
+        ctx.fillText("Lives: " + this.lives, canvas.width - 65, 20);
         }
 
-    }
     looselife() {
         this.lives--;
         if(!this.lives) {
         this.reset()    
+        }
     }
 
     reset() {
@@ -24,5 +24,4 @@ class Lives {
         document.location.reload();
 
     }
-
 }
