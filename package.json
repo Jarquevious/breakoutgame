@@ -1,7 +1,6 @@
 {
   "name": "breakoutgame",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,6 +17,10 @@
   },
   "homepage": "https://github.com/Jarquevious/breakoutgame#readme",
   "devDependencies": {
-    "eslint": "^7.18.0"
-  }
+    "eslint": "^7.18.0",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {},
+  "description": ""
 }
